@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CatMove : MonoBehaviour
 {
-
     public Rigidbody rb;
     public float moveSpeed = 500f;
-    private float JUMP_FORCE = 250f;
+	public float JUMP_FORCE = 250f;
 
     // Update is called once per frame, use FixedUpdate when dealing with physics
     public void jump()
@@ -15,15 +14,17 @@ public class CatMove : MonoBehaviour
         rb.AddForce(Vector3.up * JUMP_FORCE);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKey("d"))
         {
-            rb.AddForce(moveSpeed * Time.deltaTime, 0, 0);
+            //rb.AddForce(moveSpeed * Time.deltaTime, 0, 0);
+			gameObject.transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
         }
         if (Input.GetKey("a"))
         {
-            rb.AddForce(-moveSpeed * Time.deltaTime, 0, 0);
+            //rb.AddForce(-moveSpeed * Time.deltaTime, 0, 0);
+			gameObject.transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
         }
         if (Input.GetKeyDown("space") && gameObject.transform.position.y <= .6)
         {

@@ -7,6 +7,7 @@ public class CatMove : MonoBehaviour
     public Rigidbody rb;
     public float moveSpeed = 500f;
 	public float JUMP_FORCE = 250f;
+    private bool isJumping;
 
     // Update is called once per frame, use FixedUpdate when dealing with physics
     public void jump()
@@ -16,6 +17,14 @@ public class CatMove : MonoBehaviour
 
     void Update()
     {
+        if (rb.velocity.y != 0)
+        {
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
         if (Input.GetKey("d"))
         {
             //rb.AddForce(moveSpeed * Time.deltaTime, 0, 0);
@@ -26,9 +35,12 @@ public class CatMove : MonoBehaviour
             //rb.AddForce(-moveSpeed * Time.deltaTime, 0, 0);
 			gameObject.transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
         }
-        if (Input.GetKeyDown("space") && gameObject.transform.position.y <= .6)
+        if (!isJumping)
         {
-            jump();
-        }
+            if (Input.GetKeyDown("space") && gameObject.transform.position.y <= .6)
+            {
+                jump();
+            }
+        } 
     }
 }

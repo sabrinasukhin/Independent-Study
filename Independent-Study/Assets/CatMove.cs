@@ -15,7 +15,7 @@ public class CatMove : MonoBehaviour
         rb.AddForce(Vector3.up * JUMP_FORCE);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (rb.velocity.y != 0)
         {
@@ -37,7 +37,7 @@ public class CatMove : MonoBehaviour
         }
         if (!isJumping)
         {
-            if (Input.GetKeyDown("space") && gameObject.transform.position.y <= .6)
+            if (Input.GetKeyDown("space"))
             {
                 jump();
             }

@@ -31,14 +31,18 @@ public class ChangeViews : MonoBehaviour
 	
 	void Update ()
     {
-        cam.backgroundColor = alive;
-        isAlive = true;
-        currentBar += increaseTime * Time.deltaTime;
-        viewBar.value = CalcBar();
-
         if (currentBar > 100)
         {
             currentBar = 100;
+        }
+
+        if(!Input.GetKey(KeyCode.LeftShift))
+        {
+            currentBar += increaseTime * Time.deltaTime;
+            cam.backgroundColor = alive;
+            isAlive = true;
+
+            viewBar.value = CalcBar();
         }
 
         if (Input.GetKey(KeyCode.LeftShift))

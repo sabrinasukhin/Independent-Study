@@ -13,6 +13,7 @@ public class CatMove : MonoBehaviour
 
     public GameObject catSprite;
 
+    private GameObject cam;
 
     // Update is called once per frame, use FixedUpdate when dealing with physics
     public void jump()
@@ -23,6 +24,7 @@ public class CatMove : MonoBehaviour
     void Start()
     {
         facingRight = true;
+        cam = GameObject.Find("Main Camera");
     }
 
     private void OnCollisionEnter(Collision col)
@@ -42,6 +44,9 @@ public class CatMove : MonoBehaviour
 
     void Update()
     {
+
+        cam.transform.position = new Vector3(gameObject.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+
         if(facingRight)
         {
             catSprite.GetComponent<SpriteRenderer>().flipX = false;

@@ -32,17 +32,6 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKeyUp(KeyCode.LeftShift))
-		{
-			//MainCamera.gameObject.SetActive(true);
-			LevelCamera.gameObject.SetActive(false);
-		}
-		if(Input.GetKeyDown(KeyCode.LeftShift))
-		{
-			LevelCamera.gameObject.SetActive(true);
-			//MainCamera.gameObject.SetActive(false);
-		}
-
 		if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
 		{
 			StopCoroutine(WalkCycle());
@@ -52,6 +41,7 @@ public class Movement : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
 		{
+			StopAllCoroutines();
 			StartCoroutine(WalkCycle());
 		}
 

@@ -22,6 +22,9 @@ public class CatMove : MonoBehaviour
 	private Vector3 deathLoc;
 	public GameObject DeathPlatform;
 
+	public float lowestY;
+	public float Y;
+
     // Update is called once per frame, use FixedUpdate when dealing with physics
     public void jump()
     {
@@ -33,9 +36,18 @@ public class CatMove : MonoBehaviour
 		Lives = 9;
         facingRight = true;
         cam = GameObject.Find("Main Camera");
+		lowestY = gameObject.transform.position.y;
 		startLoc = gameObject.transform.position;
 		deathLoc = new Vector3(0,0,0);
     }
+
+	void OnTriggerEnter(Collider col)
+	{
+		if(col.tag == "enemy")
+		{
+			Death(-.6f);
+		}
+	}
 
     private void OnCollisionEnter(Collision col)
     {
@@ -55,7 +67,7 @@ public class CatMove : MonoBehaviour
     void Update()
     {
 
-        cam.transform.position = new Vector3(gameObject.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+		cam.transform.position = new Vector3(gameObject.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
         if(facingRight)
         {
@@ -82,15 +94,17 @@ public class CatMove : MonoBehaviour
             }
         } 
 
-		if(gameObject.transform.position.y < -6.15f)
+
+
+		if(gameObject.transform.position.y < -7.5f)
 		{
-			Death();
+			Death(2f);
 		}
     }
 
-	public void Death()
+	public void Death(float AddedDistance)
 	{
-		deathLoc = new Vector3 (gameObject.transform.transform.position.x, gameObject.transform.position.y + 2.2f, gameObject.transform.position.z);
+		deathLoc = new Vector3 (gameObject.transform.transform.position.x, gameObject.transform.position.y + AddedDistance, gameObject.transform.position.z);
 
 		Instantiate(DeathPlatform, deathLoc, Quaternion.identity);
 

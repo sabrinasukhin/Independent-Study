@@ -14,7 +14,7 @@ public class ChangeViews : MonoBehaviour
     Camera cam;
     public Color alive;
     public Color dead;
-    private bool isAlive;
+	public bool isAlive;
 
 
 

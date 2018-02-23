@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CatMove : MonoBehaviour
 {
-
+	public Text livesText;
 	public int Lives;
 
     public Rigidbody rb;
@@ -33,7 +34,7 @@ public class CatMove : MonoBehaviour
 
     void Start()
     {
-		Lives = 9;
+		Lives = 2;
         facingRight = true;
         cam = GameObject.Find("Main Camera");
 		lowestY = gameObject.transform.position.y;
@@ -41,17 +42,15 @@ public class CatMove : MonoBehaviour
 		deathLoc = new Vector3(0,0,0);
     }
 
-	void OnTriggerEnter(Collider col)
-	{
-		if(col.tag == "enemy")
-		{
-			Death(-.6f);
-		}
-	}
+
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "plat")
+		if(col.gameObject.tag == "enemy")
+		{
+			Death(.3f);
+		}
+		else if(col.gameObject.tag == "plat")
         {
             isJumping = false;
         }
@@ -98,18 +97,33 @@ public class CatMove : MonoBehaviour
 
 		if(gameObject.transform.position.y < -7.5f)
 		{
-			Death(2f);
+			Death(1f);
 		}
+
+		livesText.text = "" + Lives;
     }
 
 	public void Death(float AddedDistance)
 	{
-		deathLoc = new Vector3 (gameObject.transform.transform.position.x, gameObject.transform.position.y + AddedDistance, gameObject.transform.position.z);
+		if(Lives != 0)
+		{
+			deathLoc = new Vector3 (gameObject.transform.transform.position.x, gameObject.transform.position.y + AddedDistance, gameObject.transform.position.z);
 
-		Instantiate(DeathPlatform, deathLoc, Quaternion.identity);
+			Instantiate(DeathPlatform, deathLoc, Quaternion.identity);
 
-		transform.position = startLoc;
+			transform.position = startLoc;
 
-		Lives--;
+			Lives--;
+		}
+		else
+		{
+			GameOver();
+		}
+
+	}
+
+	public void GameOver()
+	{
+		
 	}
 }

@@ -64,6 +64,7 @@ public class ChangeViews : MonoBehaviour
                 viewBar.value = CalcBar();
                 cam.backgroundColor = alive;
                 isAlive = true;
+
             }
             if (currentBar > 0)
             {

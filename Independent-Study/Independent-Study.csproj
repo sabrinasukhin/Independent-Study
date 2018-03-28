@@ -78,8 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CatMove.cs" />
-    <Compile Include="Assets\ChangeViews.cs" />
+    <Compile Include="Assets\_CODE\CatMove.cs" />
+    <Compile Include="Assets\_CODE\ChangeGround.cs" />
+    <Compile Include="Assets\_CODE\ChangeViews.cs" />
+    <Compile Include="Assets\_CODE\DeadCatView.cs" />
+    <Compile Include="Assets\_CODE\Movement.cs" />
+    <Compile Include="Assets\_CODE\Walking.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

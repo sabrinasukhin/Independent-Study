@@ -48,7 +48,7 @@ public class CatMove : MonoBehaviour
     {
 		if(col.gameObject.tag == "enemy")
 		{
-			Death(.3f);
+			Death(-1f);
 		}
 		else if(col.gameObject.tag == "plat")
         {
@@ -95,10 +95,10 @@ public class CatMove : MonoBehaviour
 
 
 
-		if(gameObject.transform.position.y < -7.5f)
+		/*if(gameObject.transform.position.y < -7.5f)
 		{
 			Death(1f);
-		}
+		}*/
 
 		livesText.text = "" + Lives;
     }
@@ -124,6 +124,6 @@ public class CatMove : MonoBehaviour
 
 	public void GameOver()
 	{
-		
+		//this is where we load the game over screen
 	}
 }
